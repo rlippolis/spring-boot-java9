@@ -55,6 +55,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<jvmArguments>${jvmArguments}</jvmArguments>
+                    <classifier>fat</classifier>
 				</configuration>
 			</plugin>
             <plugin>
