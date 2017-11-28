@@ -22,6 +22,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+
+		<jvmArguments>--add-modules java.xml.bind</jvmArguments>
 	</properties>
 
 	<dependencies>
@@ -51,7 +53,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<jvmArguments>${jvmArguments}</jvmArguments>
+				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <!-- Surefire 2.20.1 implicitly adds "\-\-add-modules java.se.ee"
+                     if run on Java 9 and no explicit modules are added -->
+                <configuration>
+                    <argLine>${jvmArguments}</argLine>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
